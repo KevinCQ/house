@@ -142,5 +142,35 @@ Page({
      */
     onShareAppMessage: function () {
 
-    }
+    },
+    // 页面跳转
+    NavigateToPages(e) {
+      let url = e.currentTarget.dataset.url
+      let id = e.currentTarget.dataset.id
+      let title = e.currentTarget.dataset.title
+      let backgroundcolor = e.currentTarget.dataset.backgroundcolor
+
+      console.log(e, url, id, title)
+
+      if (this.data.UserLogin) {
+          wx.navigateTo({
+              url: `${url}?id=${id}&title=${title}&backgroundcolor=${backgroundcolor}`,
+              success: function (res) {
+                  console.log('res', res)
+              },
+              fail: function (err) {
+                  console.log('err', err)
+              }
+          })
+      } else {
+          // 提示登录
+          wx.showToast({
+              title: '你还未登录，请先到个人中心登录！',
+              icon: 'none',
+              duration: 2500,
+              mask: true,
+          })
+      }
+  }
+
 })

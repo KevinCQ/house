@@ -14,7 +14,7 @@
 }
 
 .select-box image{
-    width: 212rpx;
+    width: 636rpx;
     height: 197rpx;
 }
 

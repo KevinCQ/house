@@ -1,12 +1,12 @@
 <!--pages/home/home.wxml-->
 <!-- 功能选项a -->
 <view class="select-box">
-	<view data-url="../../Companypackage/newHouse/newHouse" bindtap="Navigate">
+	<!-- <view data-url="../../Companypackage/newHouse/newHouse" bindtap="Navigate">
 		<image src="../image/newHouse.png"></image>
 	</view>
 	<view data-url="../../Companypackage/secondHandHouse/secondHandHouse" bindtap="Navigate">
 		<image src="../image/secondHand.png"></image>
-	</view>
+	</view> -->
 	<view data-url="../../Companypackage/rentingHouse/rentingHouse" bindtap="Navigate">
 		<image src="../image/rentinghouse.png"></image>
 	</view>
