@@ -37,7 +37,7 @@ Page({
         let title = e.currentTarget.dataset.title
         let backgroundcolor = e.currentTarget.dataset.backgroundcolor
 
-        console.log(e, url, id, title)
+        console.log(e, url, id, title,backgroundcolor)
 
         if (this.data.UserLogin) {
             wx.navigateTo({

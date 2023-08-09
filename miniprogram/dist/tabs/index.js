@@ -119,15 +119,16 @@ VantComponent({
                 tabs: children.map((child) => child.data),
                 scrollable: this.children.length > data.swipeThreshold || !data.ellipsis
             });
+            console.log("updateTabs")
             this.setCurrentIndexByName(this.getCurrentName() || data.active);
         },
         trigger(eventName) {
             const { currentIndex } = this.data;
             const child = this.children[currentIndex];
             this.$emit(eventName, {
-                index: currentIndex,
-                name: child.getComputedName(),
-                title: child.data.title
+                index: currentIndex
+                // name: child.getComputedName(),
+                // title: child.data.title
             });
         },
         onTap(event) {

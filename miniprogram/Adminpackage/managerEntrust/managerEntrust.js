@@ -152,9 +152,9 @@ Page({
 
       console.log(e, url, id, title)
       console.log(this.data)
-      if (this.data.UserLogin) {
+      // if (this.data.UserLogin) {
           wx.navigateTo({
-              url: `${url}?id=${id}&title=${title}&backgroundcolor=${backgroundcolor}`,
+              url: `../../Companypackage/rentOutEntrust/rentOutEntrust?id=rentout&title=发布出租委托&backgroundcolor=#f9ae95`,
               success: function (res) {
                   console.log('res', res)
               },
@@ -162,15 +162,15 @@ Page({
                   console.log('err', err)
               }
           })
-      } else {
-          // 提示登录
-          wx.showToast({
-              title: '你还未登录，请先到个人中心登录！',
-              icon: 'none',
-              duration: 2500,
-              mask: true,
-          })
-      }
+      // } else {
+      //     // 提示登录
+      //     wx.showToast({
+      //         title: '你还未登录，请先到个人中心登录！',
+      //         icon: 'none',
+      //         duration: 2500,
+      //         mask: true,
+      //     })
+      // }
   }
 
 })

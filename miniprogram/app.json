@@ -68,12 +68,6 @@
                 "selectedIconPath": "pages/image/home-selected.png"
             },
             {
-                "pagePath": "pages/entrustHome/entrustHome",
-                "text": "业主委托",
-                "iconPath": "pages/image/entrust-bar.png",
-                "selectedIconPath": "pages/image/entrust-bar-selected.png"
-            },
-            {
                 "pagePath": "pages/mypage/mypage",
                 "text": "我的",
                 "iconPath": "pages/image/my.png",
