@@ -12,7 +12,7 @@
       <view class="desc text-blue">说明：点击卡片查看详情并进行审核发布</view>
     </view>
     <view class="list-box desc" wx:if='{{CheckingEntrustList.length==0}}'>暂时没有待审核的委托~</view>
-    <button class='cu-btn lg submitbtn' form-type="SubmitEntrust" style="background:#0080ff;" bindtap="NavigateToPages">发布出租委托</button>
+    <button class='cu-btn lg submitbtn' form-type="SubmitEntrust" bindtap="NavigateToPages"><image src="../images/add-outline.png"></image></button>
   </van-tab>
   <van-tab title="已发布" dot='true'>
     <view class="list-box" wx:for="{{publishedEntrustList}}" wx:key='key' data-type="published" data-id="{{item['_id']}}" bindtap="Navigate">

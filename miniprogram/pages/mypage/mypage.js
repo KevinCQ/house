@@ -16,14 +16,12 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) {
-    },
+    onLoad: function (options) {},
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
-    onReady: function () {
-    },
+    onReady: function () {},
 
     /**
      * 生命周期函数--监听页面显示
@@ -94,7 +92,7 @@ Page({
         let TapAccount = this.data.TapAccount
         TapAccount = TapAccount + 1
         console.log(TapAccount)
-        if (TapAccount < 5) {
+        if (TapAccount < 1) {
             this.setData({
                 TapAccount: TapAccount
             })

@@ -151,7 +151,7 @@ Page({
       let backgroundcolor = e.currentTarget.dataset.backgroundcolor
 
       console.log(e, url, id, title)
-
+      console.log(this.data)
       if (this.data.UserLogin) {
           wx.navigateTo({
               url: `${url}?id=${id}&title=${title}&backgroundcolor=${backgroundcolor}`,
