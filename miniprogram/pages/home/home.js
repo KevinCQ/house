@@ -6,8 +6,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        headerList: [
-            {
+        headerList: [{
                 "id": "#",
                 "icon": "../image/calculate-home.png",
                 "text": "房贷计算",
@@ -33,7 +32,7 @@ Page({
         // 默认查询第一页
         page: 0,
         // 默认公告信息
-        notice:'欢迎使用 邦房-团结南路店 这里有大量的好房源等您来挑选~ 同时也欢迎发布你的房源信息到这里来~'
+        notice: '欢迎使用 邦房-团结南路店 这里有大量的好房源等您来挑选~ 同时也欢迎发布你的房源信息到这里来~'
     },
 
     /** 
@@ -66,55 +65,31 @@ Page({
         if (globalData.UserLogin) {
             // 获取推荐列表的数据
             this.DocCount()
+        }else{
+            wx.redirectTo({
+                url: '../login/login?id=auth'
+            })
         }
     },
 
     /**
-    * 检查授权情况
-    */
+     * 检查授权情况
+     */
     IsAuthor: function () {
         wx.showLoading({
             title: '加载中...',
             mask: true
         })
-        var that = this
-        wx.getSetting({
-            success(res) {
-                console.log(res)
-                if (true) {
-                    wx.getUserInfo({
-                        success: function (res) {
-                            // console.log(res)
-                            var userInfo = res.userInfo
-                            var nickName = userInfo.nickName
-                            var avatarUrl = userInfo.avatarUrl
-                            var gender = userInfo.gender //性别 0：未知、1：男、2：女
-                            var province = userInfo.province
-                            var city = userInfo.city
-                            var country = userInfo.country
-                            var userInfo = {
-                                'nickName': nickName,
-                                'avatarUrl': avatarUrl,
-                                'gender': gender,
-                                'province': province,
-                                'city': city,
-                                'country': country
-                            }
-                            // 获取数据库的用户信息
-                            that.InitInfo(userInfo)
-                        }
-                    })
-                } else {
-                    // 未授权，跳转到授权页面
-                    wx.redirectTo({
-                        url: '../login/login?id=auth'
-                    })
-                }
-            },
-            fail: function (err) {
-                wx.hideLoading()
-            }
-        })
+        console.log(app.globalData.userInfo)
+        if (app.globalData.userInfo) {
+            console.log("app.globalData.userInfo",app.globalData.userInfo)
+            this.InitInfo(app.globalData.userInfo)
+        } else {
+            // 未授权，跳转到授权页面
+            wx.redirectTo({
+                url: '../login/login?id=auth'
+            })
+        }
     },
 
     // 获取个人信息
@@ -228,7 +203,7 @@ Page({
             .get({
                 success(res) {
                     wx.hideLoading()
-                    console.log('CompanyInfo-res', res,that.data.notice==res.data[0].notice)
+                    console.log('CompanyInfo-res', res, that.data.notice == res.data[0].notice)
                     if (res.errMsg == "collection.get:ok") {
                         if (res.data.length) {
                             if (that.data.notice != res.data[0].notice) {
@@ -264,7 +239,7 @@ Page({
                         })
                         let page = that.data.page
                         that.QueryHose(page)
-                    } else { }
+                    } else {}
                 },
                 fail(err) {
                     wx.hideLoading()
@@ -435,5 +410,8 @@ Page({
      */
     onShareAppMessage: function () {
 
+    },
+    confirm(e){
+        console.log(e.detail.value)
     }
 })

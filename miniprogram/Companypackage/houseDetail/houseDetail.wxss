@@ -107,7 +107,8 @@ page {
 .introduce-box {
     margin-top: 8px;
     margin-bottom: 60px;
-    padding: 8px;
+    left: 0;
+    padding-bottom: 50px;
     background-color: #fff;
 }
 

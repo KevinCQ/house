@@ -1,4 +1,5 @@
 // pages/mypage/mypage.js
+const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
 var app = getApp()
 Page({
 
@@ -32,7 +33,9 @@ Page({
         // 全局变量
         let globalData = app.globalData
         let userInfo = globalData.userInfo
-        userInfo['phone'] = userInfo['phone'].replace(userInfo['phone'].substring(3, 7), "****")
+        if(userInfo['phone']){
+            userInfo['phone'] = userInfo['phone'].replace(userInfo['phone'].substring(3, 7), "****")
+        }
         this.setData({
             UserLogin: globalData.UserLogin,
             userInfo: userInfo
@@ -148,6 +151,7 @@ Page({
                     UserLogin: false,
                     Adminstator: false
                 })
+                app.globalData.UserLogin=false
                 wx.removeStorageSync('userInfo')
             }, 2000
         )

@@ -204,3 +204,12 @@
 .card-tag-bg {
     background-color: #ee0a24;
 }
+.top-search{
+    size: 50px;
+    background-color: rgb(202, 29, 29);
+}
+
+.search-button{
+
+    background-color: #fff;
+}

@@ -73,15 +73,16 @@ Page({
             'id': 'LookUpStyle',
             'title': '看房方式',
             'pickerlist': ['随时看房', '电话预约', '其他']
-        }, {
-            'id': 'Invoice',
-            'title': '契税发票时间是否满两年',
-            'pickerlist': ["是", "否"]
-        }, {
-            'id': 'Signing',
-            'title': '网签是否满三年',
-            'pickerlist': ["是", "否"]
         }],
+        //  {
+        //     'id': 'Invoice',
+        //     'title': '契税发票时间是否满两年',
+        //     'pickerlist': ["是", "否"]
+        // }, {
+        //     'id': 'Signing',
+        //     'title': '网签是否满三年',
+        //     'pickerlist': ["是", "否"]
+        // }],
 
         // 房型选择列表
         HouseStyleList: [
@@ -122,9 +123,9 @@ Page({
             // 看房方式
             'LookUpStyle': '',
             // 契税发票时间是否满两年
-            'Invoice': '',
+            // 'Invoice': '',
             // 网签是否满三年
-            'Signing': ''
+            // 'Signing': ''
         },
         // 照片列表
         imgList: [],

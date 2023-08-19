@@ -44,7 +44,7 @@
 <!-- 照片上传 -->
 <view class="cu-form-group">
 	<view class='title'>
-		<text decode="true">&nbsp;&nbsp;<text decode="true" style="color:#EE0A24;">*</text>房屋照片(1-4张即可)（{{imgList.length}}/4）</text>
+		<text decode="true">&nbsp;&nbsp;<text decode="true" style="color:#EE0A24;">*</text>房屋照片(1-10张即可)（{{imgList.length}}/10）</text>
 	</view>
 </view>
 <view class="cu-form-group" style="padding-left:5px;">
@@ -55,7 +55,10 @@
 				<text class="cuIcon-close"></text>
 			</view>
 		</view>
-		<view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+		<!-- <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+			<text class="cuIcon-cameraadd"></text>
+        </view> -->
+        <view class="solids" bindtap="ChooseImage">
 			<text class="cuIcon-cameraadd"></text>
 		</view>
 	</view>

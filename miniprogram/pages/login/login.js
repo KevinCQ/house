@@ -1,4 +1,5 @@
 // pages/login/login.js
+const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
 var app = getApp()
 Page({
 
@@ -7,7 +8,8 @@ Page({
      */
     data: {
         showAuth: true,
-        showform: true
+        showform: true,
+        avatarUrl: defaultAvatarUrl,
     },
 
     /**
@@ -34,6 +36,7 @@ Page({
             var city = userInfo.city
             var country = userInfo.country
             var userData = {
+
                 'userInfo': userInfo,
                 'nickName': nickName,
                 'avatarUrl': avatarUrl,
@@ -46,7 +49,7 @@ Page({
                 userInfo: userData
             })
             // 获取数据库的用户信息
-            that.InitInfo(userData)
+            that.InitInfo(userData, e)
         } else {
             // 提示需要授权
             wx.showToast({
@@ -59,7 +62,7 @@ Page({
     },
 
     // 获取个人信息
-    InitInfo(userInfo) {
+    InitInfo(userInfo, e) {
         wx.showLoading({
             title: '正在加载...',
             mask: true
@@ -74,35 +77,40 @@ Page({
                 wx.hideLoading()
                 console.log('res', res)
                 let result = res.result.data
+                var openid
                 // 判断是否已经注册
-                if (result.length) {
-                    // 已注册，拉取公告、推荐列表
-                    userInfo['openid'] = result[0]._openid
-                    userInfo['name'] = result[0].name
-                    userInfo['phone'] = result[0].phone
-                    userInfo['address'] = result[0].address
-                    // 缓存到本地
-                    wx.setStorageSync('userInfo', userInfo)
-                    // 修改全局变量为已登录
-                    app.IsLogon()
-                    // 跳转到home
-                    wx.switchTab({
-                        url: '../home/home'
-                    })
-                } else {
-                    // 显示注册页面，并提示注册
-                    that.setData({
-                        showAuth: false,
-                        showform: true
-                    })
-                    wx.showToast({
-                        title: '你还未注册，请填写注册信息！',
-                        icon: 'none',
-                        duration: 2500,
-                        mask: true,
-                    })
+                if (!result.length) {
+                    openid = this.SubmitRegister(e)
                 }
+                // 已注册，拉取公告、推荐列表
+                userInfo['openid'] = result[0]._openid === undefined ? openid : result[0]._openid
+                userInfo['name'] = result[0].name
+                userInfo['phone'] = result[0].phone
+                userInfo['address'] = result[0].address
+                // 缓存到本地
+                console.log('init',userInfo)
+                wx.setStorageSync('userInfo', userInfo)
+                // 修改全局变量为已登录
+                app.IsLogon()
+                // 跳转到home
+                wx.switchTab({
+                    url: '../home/home'
+                })
             },
+            // else {
+            //     // 显示注册页面，并提示注册
+            //     that.setData({
+            //         showAuth: false,
+            //         showform: true
+            //     })
+            //     wx.showToast({
+            //         title: '你还未注册，请填写注册信息！',
+            //         icon: 'none',
+            //         duration: 2500,
+            //         mask: true,
+            //     })
+            // }
+            // },
             fail: err => {
                 wx.hideLoading()
                 console.log('err', err)
@@ -124,10 +132,21 @@ Page({
         let userInfo = this.data.userInfo
         let id = e.currentTarget.id
         let value = e.detail.value
-        userInfo[id] = value
-        this.setData({
-            userInfo
-        })
+        if ("avatarUrl" == id) {
+            const {
+                avatarUrl
+            } = e.detail
+            userInfo[id] = avatarUrl
+            this.setData({
+                avatarUrl,
+                userInfo
+            })
+        } else {
+            userInfo[id] = value
+            this.setData({
+                userInfo,
+            })
+        }
     },
 
     // 提交注册信息
@@ -138,14 +157,14 @@ Page({
             title: '正在保存...',
         })
         let userInfo = this.data.userInfo
-        let name = userInfo['name']
-        let phone = userInfo['phone']
+        let name = userInfo['name']?userInfo['name']:''
+        let phone = userInfo['phone']?userInfo['phone']:''
         let avatarUrl = userInfo['avatarUrl']
         let nickName = userInfo['nickName']
         // 保存到数据库
         const dbname = "UserList"
         let db = wx.cloud.database()
-        db.collection(dbname)
+        return db.collection(dbname)
             .add({
                 data: {
                     name: name,
@@ -157,6 +176,7 @@ Page({
                 },
                 success: function (res) {
                     wx.hideLoading()
+                    console.log('插入返回', res)
                     if (res.errMsg == "collection.add:ok") {
                         wx.showToast({
                             title: '恭喜,注册成功！',
@@ -165,6 +185,7 @@ Page({
                         })
                         // 保存成功，更新本地缓存
                         wx.setStorageSync('userInfo', userInfo)
+                        app.globalData.UserLogin=true
                         // 页面跳转
                         // 跳转到home
                         wx.switchTab({
@@ -182,7 +203,7 @@ Page({
                 fail: function (err) {
                     wx.hideLoading()
                 }
-            })
+            })._openid
     },
 
     // 返回首页

@@ -5,7 +5,7 @@
 </view>
 
 <!-- 为登录 -->
-<view wx:if="{{!UserLogin}}" class="head-box" bindtap="NavigateToLogin">
+<!-- <view wx:if="false" class="head-box" bindtap="NavigateToLogin">
 	<view class="userAvatar-box">
 		<open-data type="userAvatarUrl"></open-data>
 	</view>
@@ -13,10 +13,10 @@
 		<view>登录/注册 (点击登录)</view>
 		<view class="font-size-12" style="color:grey;">需要先完成注册登录才能使用哦！</view>
 	</view>
-</view>
+</view> -->
 
 <!-- 已登录 -->
-<view wx:else class="head-box" bindtap="ScanPage">
+<view  class="head-box" bindtap="ScanPage">
 	<view class="userAvatar-box">
 		<open-data type="userAvatarUrl"></open-data>
 	</view>
@@ -36,12 +36,12 @@
         <view class="content-text font-size-14">管理员</view>
     </view> -->
 
-	<view class="content-row" data-id="mypage" data-url="../../Companypackage/myentrust/myentrust" bindtap="Navigate">
+	<!-- <view class="content-row" data-id="mypage" data-url="../../Companypackage/myentrust/myentrust" bindtap="Navigate">
 		<view class="content-icon float-left">
 			<image src="../image/entrust.png"></image>
 		</view>
 		<view class="content-text font-size-14">我的委托</view>
-	</view>
+	</view> -->
 
 	<view class="content-row" data-id="mycollection" data-url="../../Companypackage/mycollection/mycollection" bindtap="Navigate">
 		<view class="content-icon float-left">

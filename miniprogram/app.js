@@ -19,7 +19,7 @@ App({
         // 获取缓存的登录信息
         var userInfo = wx.getStorageSync('userInfo')
         console.log('app.js',userInfo)
-        if (userInfo.name && userInfo.phone) {
+        if (userInfo.openid) {
             this.globalData.UserLogin = true
             this.globalData.userInfo = userInfo
         }else{
