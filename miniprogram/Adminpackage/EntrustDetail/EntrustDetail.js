@@ -322,6 +322,7 @@ Page({
         let publishPlate = this.data.publishPlate
         let plate = this.data.plate
         let charge = this.data.charge
+        let location = this.data.DetialList[4].value
 
         console.log(checkedBy)
 
@@ -329,6 +330,7 @@ Page({
             name: 'PublishEntrust',
             data: {
                 type: 'add',
+                location : location,
                 plate: plate,
                 publishPlate: publishPlate,
                 checkedBy: checkedBy,

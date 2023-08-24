@@ -63,16 +63,16 @@ Page({
                 'title': '看房方式',
                 'value': ''
             },
-            {
-                'id': 'Invoice',
-                'title': '契税发票时间是否满两年',
-                'value': ''
-            },
-            {
-                'id': 'Signing',
-                'title': '网签是否满三年',
-                'value': ''
-            },
+            // {
+            //     'id': 'Invoice',
+            //     'title': '契税发票时间是否满两年',
+            //     'value': ''
+            // },
+            // {
+            //     'id': 'Signing',
+            //     'title': '网签是否满三年',
+            //     'value': ''
+            // },
             {
                 'id': 'updateTime',
                 'title': '最近发布',

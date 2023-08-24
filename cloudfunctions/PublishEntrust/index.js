@@ -24,13 +24,19 @@ exports.main = async (event, context) => {
         let plate = event.plate
         let publishPlate = event.publishPlate
         let charge = event.charge
-
+        let location =event.location
+        var data={
+          _openid: openId,
+          ID: ID,
+          updateTime: updateTime
+       }
+      //  console.log("RentingHouse"==dbname)
+       if("RentingHouse"==dbname){
+         Object.assign(data,{location: location})
+       }
+       console.log(data)
         let res = await db.collection(dbname).add({
-            data: {
-                _openid: openId,
-                ID: ID,
-                updateTime: updateTime
-            }
+            data
         }).then(res => {
             return res;
         })

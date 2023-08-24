@@ -19,6 +19,7 @@ exports.main = async (event, context) => {
         let limit = 10
         let dbname = event.key
         let page = event.page
+        let location =event.location
 
         let res = await db.collection(dbname).aggregate()
             .skip(page)
@@ -33,7 +34,11 @@ exports.main = async (event, context) => {
                 as: 'EntrustInfo',
             })
             .match({
-                'EntrustInfo.publish': true
+                'EntrustInfo.publish': true,
+                'location': db.RegExp({
+                  regexp: '.*' + location,
+                  options: 'i',
+                })
             })
             .project({
                 'ID': true,

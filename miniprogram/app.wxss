@@ -479,7 +479,7 @@ button.icon.lg {
     font-size: 24rpx;
     color: var(--black);
     flex: 1;
-    display: flex;
+    /* display: flex; */
     align-items: center;
     margin: 0 30rpx;
 }

@@ -108,6 +108,7 @@ page {
     margin-top: 8px;
     margin-bottom: 60px;
     padding: 8px;
+    padding-bottom: 60px;
     background-color: #fff;
 }
 

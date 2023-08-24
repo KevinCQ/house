@@ -205,11 +205,13 @@
     background-color: #ee0a24;
 }
 .top-search{
-    size: 50px;
-    background-color: rgb(202, 29, 29);
+    border-bottom: 0;
+    padding-left: 10%;
+    background-color: rgb(77, 69, 69);
 }
 
 .search-button{
-
+    size: mini;
     background-color: #fff;
+    margin-right: 15rpx;
 }
